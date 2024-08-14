@@ -11,6 +11,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
+import { HoverEffect } from "../ui/card-hover-effect";
 
 export function SidebarDemo() {
   const links = [
@@ -51,7 +52,7 @@ export function SidebarDemo() {
         "h-screen" // for your use case, use `h-screen` instead of `h-[60vh]`
       )}
     >
-      <Sidebar open={open} setOpen={setOpen}>
+      <Sidebar open={open} setOpen={setOpen} animate={false}>
         <SidebarBody className="justify-between gap-10">
           <div className="flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
             {open ? <Logo /> : <LogoIcon />}
@@ -64,8 +65,8 @@ export function SidebarDemo() {
           <div>
             <SidebarLink
               link={{
-                label: "Manu Arora",
-                href: "#",
+                label: "Greptile AI",
+                href: "/",
                 icon: (
                   <Image
                     src="https://www.greptile.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogo-balanced.5ba497a2.png&w=640&q=75"
@@ -96,7 +97,7 @@ export const Logo = () => {
         animate={{ opacity: 1 }}
         className="font-medium text-black dark:text-white whitespace-pre"
       >
-        Acet Labs
+        Greptile
       </motion.span>
     </Link>
   );
@@ -112,28 +113,40 @@ export const LogoIcon = () => {
   );
 };
 
+const projects = [
+  {
+    title: "Setup Code Review Bot",
+    description:
+      "Comprehensive code reviews of your team's PRs on GitHub or GitLab. Get started in minutes.",
+    link: "https://stripe.com",
+  },
+  {
+    title: "Start chatting with any Codebase",
+    description:
+      "You can chat with one or multiple codebases at once. Private and public. Just paste the repository link and start chatting.",
+    link: "https://netflix.com",
+  },
+  {
+    title: "Invite your team",
+    description:
+      "Make your collaborators more effective. Collaborate with your team right in Greptile and simplify your billing.",
+    link: "https://google.com",
+  },
+  {
+    title: "Install the Slack & Linear Integrations",
+    description:
+      "Answer technical questions where your team lives. Live, up-to-date, and always-awake.",
+    link: "https://meta.com",
+  },
+]
+
 // Dummy dashboard component with content
 const Dashboard = () => {
   return (
-    <div className="flex flex-1">
-      <div className="p-2 md:p-10 rounded-tl-2xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 flex flex-col gap-2 flex-1 w-full h-full">
-        <div className="flex gap-2">
-          {[...new Array(4)].map((i) => (
-            <div
-              key={"first-array" + i}
-              className="h-20 w-full rounded-lg  bg-gray-100 dark:bg-neutral-800 animate-pulse"
-            ></div>
-          ))}
-        </div>
-        <div className="flex gap-2 flex-1">
-          {[...new Array(2)].map((i) => (
-            <div
-              key={"second-array" + i}
-              className="h-full w-full rounded-lg  bg-gray-100 dark:bg-neutral-800 animate-pulse"
-            ></div>
-          ))}
-        </div>
-      </div>
+    <div id="feed" className="w-full h-full bg-gray-700 text-white scrollbar-hide">
+    <div className="max-w-5xl mx-auto px-8">
+       <HoverEffect items={projects} />
+   </div>
     </div>
   );
 };
